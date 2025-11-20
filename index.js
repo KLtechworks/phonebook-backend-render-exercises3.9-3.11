@@ -5,6 +5,7 @@ const app = express()
 
 const morgan = require('morgan')
 
+app.use(express.static('dist'))
 app.use(express.json())
 // 3.9 Phonebook backend step 9
 const cors = require('cors')
