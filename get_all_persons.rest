@@ -16,6 +16,15 @@ Content-Type: application/json
     "number": "39-90-2345690"
 }
 
+###
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "name": "Mary Poppins",
+  "number": "123-456789"
+}
+
 ### POST (test for no name)
 POST http://localhost:3001/api/persons
 Content-Type: application/json
