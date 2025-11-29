@@ -120,7 +120,7 @@ const errorHandler = (error, request, response, next) => {
 
 app.use(errorHandler)   
 
-const PORT = process.env.PORT || 3001
-app.listen(PORT, () => {
+const PORT = process.env.PORT 
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`backend phonebook running http://localhost:${PORT}`)
 })
