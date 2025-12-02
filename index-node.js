@@ -12,9 +12,6 @@ app.use(cors())
 
 // const mongoose = require('mongoose')
 
-// // DO NOT SAVE YOUR PASSWORD TO GITHUB!!
-// const password = process.argv[2]
-// const url = `mongodb+srv://fullstackopen:${password}@cluster0.8ljaq3o.mongodb.net/noteApp?retryWrites=true&w=majority&appName=Cluster0`
 
 // mongoose.set('strictQuery',false)
 // mongoose.connect(url, { family: 4 })
