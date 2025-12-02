@@ -12,19 +12,6 @@ app.use(express.static('dist'))
 
 const Person = require('./models/person')
 
-// app.get('/', (request, response) => {
-//   response.send(`
-//     <div style="font-family: Arial, sans-serif; padding: 20px;">
-//       <h1>Phonebook backend is running!</h1>
-//       <p>Useful links:</p>
-//       <ul>
-//         <li><a href="/api/persons">/api/persons</a> – all phonebook entries</li>
-//         <li><a href="/info">/info</a> – number of people + current time</li>
-//       </ul>
-//       <p>Everything is working perfectly!</p>
-//     </div>
-//   `)
-// })
 
 app.get('/api/persons', (request, response) => {
   Person.find({}).then(persons => response.json(persons))
