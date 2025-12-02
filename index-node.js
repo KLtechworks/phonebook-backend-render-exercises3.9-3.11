@@ -39,7 +39,7 @@ const Note = require('./models/note')
 //     { content: "HTML is Easy", important: true },
 //     { content: "Mongoose makes use of mongo easy", important: true },
 //     { content: "Callback functions suck", important: true }
-    
+
 //   ]
 
 //   await Note.deleteMany({})
@@ -47,11 +47,11 @@ const Note = require('./models/note')
 //   console.log("Notes added")
 // }
 
-// addNotes()   
+// addNotes()
 
 app.get('/api/notes', (request, response) => {
   Note.find({}).then(notes => {
-    console.log(`json file response`);    
+    console.log('json file response')
     response.json(notes)
   })
 })
@@ -62,12 +62,12 @@ app.get('/api/notes/:id', (request, response) => {
       if (note) {
         response.json(note)
       } else {
-        response.status(404).end()    
+        response.status(404).end()
       }
     })
     .catch(error => {
       console.log(error)
-      response.status(400).send({ error: 'malformatted id' })  
+      response.status(400).send({ error: 'malformatted id' })
     })
 })
 
@@ -75,20 +75,20 @@ app.post('/api/notes', (request, response) => {
   const body = request.body
 
   if (!body.content) {
-    return response.status(400).json({ 
-      error: 'content missing' 
+    return response.status(400).json({
+      error: 'content missing'
     })
   }
 
   const note = new Note({
     content: body.content,
-    important: body.important || false,   
+    important: body.important || false,
   })
 
-  
+
   note.save()
     .then(savedNote => {
-      response.json(savedNote)   
+      response.json(savedNote)
     })
     .catch(error => {
       console.log(error)
@@ -98,6 +98,6 @@ app.post('/api/notes', (request, response) => {
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-    
+  console.log(`Server running on port ${PORT}`)
+
 })

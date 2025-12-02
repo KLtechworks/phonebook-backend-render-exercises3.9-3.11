@@ -3,7 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const path = require('path')
+// const path = require('path')
 
 app.use(cors())
 app.use(express.json())
@@ -24,7 +24,7 @@ app.get('/api/persons/:id', (request, response, next) => {
       if (person) {
         response.json(person)
       } else {
-        response.status(404).end()    
+        response.status(404).end()
       }
     })
     // 3.16: Phonebook database, step 4
@@ -46,20 +46,20 @@ app.post('/api/persons', (request, response, next) => {
   const body = request.body
 
   // if (!body.name || !body.number) {
-  //   return response.status(400).json({ 
-  //     error: 'content missing' 
+  //   return response.status(400).json({
+  //     error: 'content missing'
   //   })
   // }
 
   const person = new Person({
-    name: body.name,       
-    number: body.number,   
+    name: body.name,
+    number: body.number,
   })
 
-  
+
   person.save()
     .then(savedPerson => {
-      response.json(savedPerson)   
+      response.json(savedPerson)
     })
     .catch(error => next(error))
     // .catch(error => {
@@ -89,11 +89,12 @@ app.put('/api/persons/:id', (request, response, next) => {
 // 3.15: Phonebook database, step 3
 app.delete('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndDelete(request.params.id)
-    .then(result => {
-      response.status(204).end()   
+    .then(() => {
+      response.status(204).end()
     })
-    .catch(error => next(error))   
+    .catch(error => next(error))
 })
+
 
 
 
@@ -109,7 +110,7 @@ const errorHandler = (error, request, response, next) => {
 
   // if (error.name === 'CastError') {
   //   return response.status(400).send({ error: 'malformatted id' })
-  // } 
+  // }
 
   if (error.name === 'ValidationError') {
     return response.status(400).json({ error: error.message })
@@ -118,9 +119,9 @@ const errorHandler = (error, request, response, next) => {
   next(error)
 }
 
-app.use(errorHandler)   
+app.use(errorHandler)
 
-const PORT = process.env.PORT 
+const PORT = process.env.PORT
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`backend phonebook running http://localhost:${PORT}`)
 })
